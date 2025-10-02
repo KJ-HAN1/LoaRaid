@@ -1,6 +1,6 @@
-package com.loaraid.raidscheduler.Controller;
+package com.loaraid.raidscheduler.controller;
 
-import com.loaraid.raidscheduler.EnvConfig;
+import com.loaraid.raidscheduler.config.EnvConfig;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

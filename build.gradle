@@ -35,6 +35,8 @@ dependencies {
 	//flyway
 	implementation 'org.flywaydb:flyway-mysql'
 	implementation 'org.flywaydb:flyway-core:11.13.2'
+
+	implementation 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {

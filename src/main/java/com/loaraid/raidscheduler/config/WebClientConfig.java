@@ -1,4 +1,4 @@
-package com.loaraid.raidscheduler;
+package com.loaraid.raidscheduler.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

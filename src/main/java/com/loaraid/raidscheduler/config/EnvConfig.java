@@ -1,4 +1,4 @@
-package com.loaraid.raidscheduler;
+package com.loaraid.raidscheduler.config;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Component;

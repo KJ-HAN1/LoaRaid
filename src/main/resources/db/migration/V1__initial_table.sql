@@ -97,9 +97,6 @@ ALTER TABLE `party_members` ADD FOREIGN KEY (`party_id`) REFERENCES `parties` (`
 ALTER TABLE `party_members` ADD FOREIGN KEY (`character_id`) REFERENCES `characters` (`character_id`);
 
 ALTER TABLE `users` ADD FOREIGN KEY (`main_character_id`) REFERENCES `characters` (`character_id`);
-;
-
-
 
 ALTER TABLE `class_synergy_map` ADD FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
 
