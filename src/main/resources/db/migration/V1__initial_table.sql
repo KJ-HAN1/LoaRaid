@@ -1,5 +1,5 @@
 CREATE TABLE `users` (
-  `user_id` int PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `guild_id` int,
   `discord_id` varchar(255),
   `role_code` varchar(255),
@@ -33,16 +33,16 @@ CREATE TABLE `common_codes` (
 CREATE TABLE `raids` (
   `raid_id` int PRIMARY KEY AUTO_INCREMENT,
   `raid_name` varchar(255),
-  `difficulty_code` varchar(255),
+  `difficulty_code` varchar(255) NOT NULL,
   `required_player_count` int,
   `gold_reward` int
 );
 
 CREATE TABLE `raid_applications` (
   `application_id` int PRIMARY KEY AUTO_INCREMENT,
-  `character_id` int,
-  `raid_id` int,
-  `status_code` varchar(255),
+  `character_id` int NOT NULL,
+  `raid_id` int NOT NULL,
+  `status_code` varchar(255) NOT NULL,
   `start_date_time` timestamp COMMENT '신청자가 가능한 시작 시간',
   `end_date_time` timestamp COMMENT '신청자가 가능한 종료 시간',
   `created_at` timestamp
@@ -50,20 +50,16 @@ CREATE TABLE `raid_applications` (
 
 CREATE TABLE `parties` (
   `party_id` int PRIMARY KEY AUTO_INCREMENT,
-  `raid_id` int,
-  `scheduled_at` timestamp COMMENT '파티 확정 시간'
+  `raid_id` int NOT NULL,
+  `scheduled_at` timestamp COMMENT '파티 확정 시간' NOT NULL
 );
 
 CREATE TABLE `party_members` (
   `party_member_id` int PRIMARY KEY AUTO_INCREMENT,
-  `party_id` int,
-  `character_id` int
+  `party_id` int NOT NULL,
+  `character_id` int NOT NULL
 );
 
-CREATE TABLE `class` (
-  `class_id` int PRIMARY KEY AUTO_INCREMENT,
-  `class_code` varchar(255)
-);
 
 CREATE TABLE `synergy` (
   `synergy_id` int PRIMARY KEY AUTO_INCREMENT,
@@ -72,7 +68,7 @@ CREATE TABLE `synergy` (
 
 CREATE TABLE `class_synergy_map` (
   `class_synergy_id` int PRIMARY KEY AUTO_INCREMENT,
-  `class_id` int,
+  `class_code` varchar(255),
   `synergy_id` int
 );
 
@@ -98,9 +94,8 @@ ALTER TABLE `party_members` ADD FOREIGN KEY (`character_id`) REFERENCES `charact
 
 ALTER TABLE `users` ADD FOREIGN KEY (`main_character_id`) REFERENCES `characters` (`character_id`);
 
-ALTER TABLE `class_synergy_map` ADD FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
-
 ALTER TABLE `class_synergy_map` ADD FOREIGN KEY (`synergy_id`) REFERENCES `synergy` (`synergy_id`);
 
-ALTER TABLE `class` ADD FOREIGN KEY (`class_code`) REFERENCES `common_codes` (`code_value`);
+ALTER TABLE `class_synergy_map` ADD FOREIGN KEY (`class_code`) REFERENCES `common_codes` (`code_value`);
 
+ALTER TABLE `raid_applications` ADD FOREIGN KEY (`status_code`) REFERENCES `common_codes` (`code_value`);
